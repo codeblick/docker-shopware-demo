@@ -43,7 +43,7 @@ else
         echo "SSL is not active."
     else
         mysql -u root -h localhost ${MYSQL_DATABASE} -e "UPDATE s_core_shops SET secure = 1 WHERE id = '1';"
-        var="<?php $_SERVER['HTTPS'] = 'on'; return array ("
+        var="<?php \$_SERVER['HTTPS'] = 'on'; return array ("
         sed -i "1s/.*/$var/" /var/www/html/config.php
     fi
 
