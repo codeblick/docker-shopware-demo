@@ -27,6 +27,7 @@ COPY ./assets/SwagDemoDataDE /var/www/html/engine/Shopware/Plugins/Community/Fro
 COPY ./scripts/setup-shopware.sh /usr/local/bin/setup-shopware
 
 RUN chmod +x /usr/local/bin/setup-shopware && \
-    apt-get install -qq -y mysql-server sudo
+    apt-get install -qq -y mysql-server sudo && \
+    mkdir /migrations
 
 CMD ["setup-shopware"]

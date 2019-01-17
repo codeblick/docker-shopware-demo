@@ -47,6 +47,10 @@ else
         sed -i "1s/.*/$var/" /var/www/html/config.php
     fi
 
+    for i in `/bin/ls -1 /migrations/*.sql`; do
+        mysql -u root -h localhost ${MYSQL_DATABASE} < ${i}
+    done
+
     chown -R www-data:www-data .
 
     sudo -u www-data php -d memory_limit=128M bin/console sw:firstrunwizard:disable --no-interaction --quiet
