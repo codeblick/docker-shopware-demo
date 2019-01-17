@@ -53,7 +53,6 @@ else
 
     sudo -u www-data php -d memory_limit=128M bin/console sw:cache:clear --no-interaction --quiet
     sudo -u www-data php -d memory_limit=128M bin/console sw:theme:cache:generate --no-interaction --quiet
-    sudo -u www-data php -d memory_limit=128M bin/console sw:warm:http:cache --no-interaction --quiet
 fi
 
 exec apache2-foreground
