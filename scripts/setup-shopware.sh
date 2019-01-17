@@ -3,17 +3,18 @@ set -e
 
 if [ -d /var/lib/mysql/${MYSQL_DATABASE} ] ; then
     echo "Shopware is already installed."
-    mysqld_safe --datadir='/var/lib/mysql' &
+    mysqld &
 else
-    mysql_install_db --datadir='/var/lib/mysql'
-    mysqld_safe --datadir='/var/lib/mysql' &
+    mkdir -p /var/run/mysqld
+    chown -R mysql /var/run/mysqld
+    mysqld &
 
     sleep 1
 
     mysql -u root -h localhost -e "
         CREATE DATABASE ${MYSQL_DATABASE};
-        CREATE USER '${MYSQL_USER}'@'localhost' IDENTIFIED BY '${MYSQL_PASSWORD}';
-        GRANT ALL PRIVILEGES ON ${MYSQL_DATABASE} . * TO '${MYSQL_USER}'@'localhost';
+        CREATE USER '${MYSQL_USER}'@'%' IDENTIFIED BY '${MYSQL_PASSWORD}';
+        GRANT ALL PRIVILEGES ON ${MYSQL_DATABASE} . * TO '${MYSQL_USER}'@'%';
         FLUSH PRIVILEGES;
     "
 

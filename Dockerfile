@@ -28,6 +28,9 @@ COPY ./scripts/setup-shopware.sh /usr/local/bin/setup-shopware
 
 RUN chmod +x /usr/local/bin/setup-shopware && \
     apt-get install -qq -y mysql-server sudo && \
-    mkdir /migrations
+    mkdir /migrations && \
+    sed -Ei 's/bind-address.*/bind-address=0.0.0.0/' /etc/mysql/mariadb.conf.d/50-server.cnf
+
+EXPOSE 3306
 
 CMD ["setup-shopware"]
