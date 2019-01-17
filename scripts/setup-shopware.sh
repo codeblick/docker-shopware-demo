@@ -51,6 +51,12 @@ else
         sudo -u www-data php -d memory_limit=128M bin/console sw:plugin:install --no-interaction --quiet --activate ${COB_PLUGIN_NAME}
     fi
 
+    if [ -z "${SHOP_SSL}" ]; then
+        echo "SSL is not active."
+    else
+        mysql -u root -h localhost ${MYSQL_DATABASE} -e "UPDATE s_core_shops SET secure = 1 WHERE id = '1';"
+    fi
+
     sudo -u www-data php -d memory_limit=128M bin/console sw:cache:clear --no-interaction --quiet
     sudo -u www-data php -d memory_limit=128M bin/console sw:theme:cache:generate --no-interaction --quiet
 fi
