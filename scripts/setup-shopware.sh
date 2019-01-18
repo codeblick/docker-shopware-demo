@@ -9,7 +9,7 @@ else
     chown -R mysql /var/run/mysqld
     mysqld &
 
-    sleep 1
+    sleep 3
 
     mysql -u root -h localhost -e "
         CREATE DATABASE ${MYSQL_DATABASE};
