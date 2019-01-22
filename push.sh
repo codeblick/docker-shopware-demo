@@ -2,7 +2,9 @@
 set -e
 
 push() {
-    docker push codeblick/shopware-demo:${1}
+    docker push \
+        codeblick/shopware-demo:${1} \
+        -q
 }
 
 docker login -u ${DOCKER_USER} -p ${DOCKER_PASSWORD}

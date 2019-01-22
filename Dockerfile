@@ -11,7 +11,7 @@ ENV MYSQL_HOST=127.0.0.1
 
 ENV SHOP_LOCALE="de_DE"
 ENV SHOP_HOST="localhost"
-ENV SHOP_PATH=""
+ENV SHOP_PATH="/"
 ENV SHOP_NAME="Demo Shop"
 ENV SHOP_EMAIL="admin@localhost"
 ENV SHOP_CURRENCY="EUR"
@@ -23,7 +23,10 @@ ENV ADMIN_LOCALE="de_DE"
 
 COPY ./assets/index.tpl /var/www/html/themes/Frontend/Responsive/frontend/index/index.tpl
 COPY ./assets/.htaccess /var/www/html/.htaccess
-COPY ./assets/SwagDemoDataDE /var/www/html/engine/Shopware/Plugins/Community/Frontend/SwagDemoDataDE
+
+ARG COB_DEMO_DATA_VERSION
+
+COPY ./assets/SwagDemoDataDE_${COB_DEMO_DATA_VERSION} /var/www/html/engine/Shopware/Plugins/Community/Frontend/SwagDemoDataDE
 COPY ./scripts/setup-shopware.sh /usr/local/bin/setup-shopware
 
 RUN chmod +x /usr/local/bin/setup-shopware && \
