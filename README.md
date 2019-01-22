@@ -8,7 +8,27 @@ This image is based on the codeblick/shopware-core images.
 
 ## Supported tags
 
+- `5.3.0`
+- `5.3.1`
+- `5.3.2`
+- `5.3.3`
+- `5.3.4`
+- `5.3.5`
+- `5.3.6`
+- `5.3.7`
+- `5.4.0`
+- `5.4.1`
+- `5.4.2`
+- `5.4.3`
+- `5.4.4`
+- `5.4.5`
+- `5.4.6`
+- `5.5.0`
+- `5.5.1`
+- `5.5.2`
+- `5.5.3`
 - `5.5.4`
+- `5.5.5`
 
 ## Environment variables
 
@@ -31,4 +51,20 @@ ENV ADMIN_NAME="admin"
 ENV ADMIN_LOCALE="de_DE"
 
 ENV COB_PLUGIN_NAME=""
+```
+
+## Example usage
+
+```yaml
+version: "3"
+services:
+
+  shopware:
+    image: codeblick/shopware-demo:5.5.5
+    environment:
+      - COB_PLUGIN_NAME=CobExample
+    volumes:
+       - ./src/CobExample:/var/www/html/custom/plugins/CobExample
+       - ./src/migrations:/migrations
+
 ```
