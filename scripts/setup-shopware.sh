@@ -29,7 +29,7 @@ else
     rm /var/www/html/recovery/install/data/install.lock
 
     if [ -z "${SHOP_PATH}" ]; then
-        if [ verlte ${SW_VERSION} 5.4.0 ]; then
+        if verlte ${SW_VERSION} 5.3.7; then
             export SHOP_PATH="/"
         fi
     fi
