@@ -1,6 +1,14 @@
 #!/usr/bin/env bash
 set -e
 
+verlte() {
+    [  "$1" = "`echo -e "$1\n$2" | sort -V | head -n1`" ]
+}
+
+verlt() {
+    [ "$1" = "$2" ] && return 1 || verlte $1 $2
+}
+
 if [ -d /var/lib/mysql/${MYSQL_DATABASE} ] ; then
     echo "Shopware is already installed."
     mysqld &
@@ -19,6 +27,12 @@ else
     "
 
     rm /var/www/html/recovery/install/data/install.lock
+
+    if [ -z "${SHOP_PATH}" ]; then
+        if [ verlte ${SW_VERSION} 5.4.0 ]; then
+            export SHOP_PATH="/"
+        fi
+    fi
 
     php recovery/install/index.php \
         --no-interaction \

@@ -11,7 +11,7 @@ ENV MYSQL_HOST=127.0.0.1
 
 ENV SHOP_LOCALE="de_DE"
 ENV SHOP_HOST="localhost"
-ENV SHOP_PATH="/"
+ENV SHOP_PATH=""
 ENV SHOP_NAME="Demo Shop"
 ENV SHOP_EMAIL="admin@localhost"
 ENV SHOP_CURRENCY="EUR"
@@ -20,6 +20,9 @@ ENV ADMIN_PASSWORD="0h4JDx7v6dFY"
 ENV ADMIN_EMAIL="admin@localhost"
 ENV ADMIN_NAME="admin"
 ENV ADMIN_LOCALE="de_DE"
+
+ARG COB_SW_VERSION
+ENV SW_VERSION=${COB_SW_VERSION}
 
 COPY ./assets/index.tpl /var/www/html/themes/Frontend/Responsive/frontend/index/index.tpl
 COPY ./assets/.htaccess /var/www/html/.htaccess
