@@ -62,22 +62,24 @@ else
     fi
 
     chown -R www-data:www-data .
-    sudo -u www-data php -d memory_limit=128M bin/console sw:firstrunwizard:disable --no-interaction
-    sudo -u www-data php -d memory_limit=128M bin/console sw:plugin:refresh --no-interaction
-    sudo -u www-data php -d memory_limit=128M bin/console sw:plugin:install --no-interaction SwagDemoDataDE
+    php -d memory_limit=128M bin/console sw:firstrunwizard:disable --no-interaction
+    php -d memory_limit=128M bin/console sw:plugin:refresh --no-interaction
+    php -d memory_limit=128M bin/console sw:plugin:install --no-interaction SwagDemoDataDE
 
     if [ -z "${COB_PLUGIN_NAME}" ]; then
         echo "No plugin was selected for installation."
     else
-        sudo -u www-data php -d memory_limit=128M bin/console sw:plugin:install --no-interaction --activate ${COB_PLUGIN_NAME}
+        php -d memory_limit=128M bin/console sw:plugin:install --no-interaction --activate ${COB_PLUGIN_NAME}
     fi
 
     for i in `/bin/ls -1 /migrations/*.sql`; do
         mysql -u root -h localhost ${MYSQL_DATABASE} < ${i}
     done
 
-    sudo -u www-data php -d memory_limit=128M bin/console sw:cache:clear --no-interaction
-    sudo -u www-data php -d memory_limit=128M bin/console sw:theme:cache:generate --no-interaction
+    php -d memory_limit=128M bin/console sw:cache:clear --no-interaction
+    php -d memory_limit=128M bin/console sw:theme:cache:generate --no-interaction
+
+    chown -R www-data:www-data .
 fi
 
 exec apache2-foreground
