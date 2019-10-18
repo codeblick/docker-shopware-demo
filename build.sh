@@ -9,25 +9,6 @@ build() {
         -q
 }
 
-build 5.4.0 5_4_0
-build 5.4.1 5_4_0
-build 5.4.2 5_4_0
-build 5.4.3 5_4_0
-build 5.4.4 5_4_0
-build 5.4.5 5_4_0
-build 5.4.6 5_4_0
-
-build 5.5.0 5_5_0
-build 5.5.1 5_5_0
-build 5.5.2 5_5_0
-build 5.5.3 5_5_0
-build 5.5.4 5_5_0
-build 5.5.5 5_5_0
-build 5.5.6 5_5_0
-build 5.5.7 5_5_0
-build 5.5.8 5_5_0
-build 5.5.9 5_5_0
-build 5.5.10 5_5_0
-
 build 5.6.0 5_5_0
-build 5.6.1 5_5_0
+#build 5.6.1 5_5_0
+#build 5.6.2 5_5_0

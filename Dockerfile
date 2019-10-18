@@ -33,9 +33,11 @@ COPY ./assets/SwagDemoDataDE_${COB_DEMO_DATA_VERSION} /var/www/html/engine/Shopw
 COPY ./scripts/setup-shopware.sh /usr/local/bin/setup-shopware
 
 RUN chmod +x /usr/local/bin/setup-shopware && \
-    apt-get install -qq -y mysql-server sudo && \
+    apt update && apt install -qq -y mysql-server sudo && \
     mkdir /migrations && \
-    sed -Ei 's/bind-address.*/bind-address=0.0.0.0/' /etc/mysql/mariadb.conf.d/50-server.cnf
+    sed -Ei 's/bind-address.*/bind-address=0.0.0.0/' /etc/mysql/mysql.conf.d/mysqld.cnf && \
+    apt autoremove -y && apt clean && rm -rf /var/lib/apt/lists/* && \
+    rm -r /etc/services.d/apache
 
 EXPOSE 3306
 VOLUME /var/lib/mysql

@@ -61,7 +61,6 @@ else
         sed -i "1s/.*/$var/" /var/www/html/config.php
     fi
 
-    chown -R www-data:www-data .
     php -d memory_limit=128M bin/console sw:firstrunwizard:disable --no-interaction
     php -d memory_limit=128M bin/console sw:plugin:refresh --no-interaction
     php -d memory_limit=128M bin/console sw:plugin:install --no-interaction SwagDemoDataDE
@@ -78,8 +77,7 @@ else
 
     php -d memory_limit=128M bin/console sw:cache:clear --no-interaction
     php -d memory_limit=128M bin/console sw:theme:cache:generate --no-interaction
-
-    chown -R www-data:www-data .
 fi
 
-exec apache2-foreground
+/bin/wait-for-it.sh -t 120 127.0.0.1:9000
+/usr/sbin/apache2ctl -DFOREGROUND
