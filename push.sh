@@ -5,8 +5,6 @@ push() {
     docker push codeblick/shopware-demo:${1}
 }
 
-docker login -u ${DOCKER_USER} -p ${DOCKER_PASSWORD}
-
-push 5.6.6
-push 5.6.7
-push 5.6.8
+push 5.6.10
+push 5.7.0
+push 5.7.2
