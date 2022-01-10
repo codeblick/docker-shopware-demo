@@ -9,6 +9,8 @@ build() {
         -q
 }
 
-build 5.6.10 5_5_0
-build 5.7.0 5_5_0
-build 5.7.2 5_5_0
+build 5.7.3 5_5_0
+build 5.7.4 5_5_0
+build 5.7.5 5_5_0
+build 5.7.6 5_5_0
+build 5.7.7 5_5_0
